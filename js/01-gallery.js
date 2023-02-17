@@ -4,7 +4,7 @@ import { galleryItems } from './gallery-items.js';
 const gallery = document.querySelector(".gallery");
 
 const imgContainer = galleryItems.reduce((acum, item) => {
-    return (acum += ` <div class = "gallery__items"> 
+    return (acum += ` <div class = "gallery__item"> 
     <a class="gallery__link" href="${item.original}">
     <img
       class="gallery__image"
@@ -18,34 +18,33 @@ const imgContainer = galleryItems.reduce((acum, item) => {
 }, '');
 gallery.insertAdjacentHTML('beforeend', imgContainer);
 
-// gallery.addEventListener("click", (e) => {
-//     e.preventDefault();
+gallery.addEventListener("click", (e) => {
+    e.preventDefault();
 
-//     if (e.target.nodeName !== 'IMG') {
-//         return;
-//     }
+    if (e.target.nodeName !== 'IMG') {
+        return;
+    }
 
-//     const imgSelected = e.target.getAttribute("data-source");
+    const imgSelected = e.target.getAttribute("data-source");
 
-//     const instance = basicLightbox.create(
-//     `<img src='${imgSelected}' width='800' height='600'>`,
-//     {
-//       // налаштування бібліотеки
-//       onShow: () => {
-//         document.addEventListener('keydown', closeModal);
-//       },
-//       onClose: () => {
-//         document.removeEventListener('keydown', closeModal);
-//       },
-//     }
-//   );
-//     instance.show();
+    const instance = basicLightbox.create(
+    `<img src='${imgSelected}' width='800' height='600'>`,
+    {
+      // налаштування бібліотеки
+      onShow: () => {
+        document.addEventListener('keydown', closeModal);
+      },
+      onClose: () => {
+        document.removeEventListener('keydown', closeModal);
+      },
+    }
+  );
+    instance.show();
 
-// })
+})
 
-
-//  function closeModal(e) {
-//         if (e.key === "Escape") {
-//             instance.close();
-//         }
-//     }
+function closeModal(e) {
+    if (e.key === "Escape") {
+        instance.close();
+    }
+}
