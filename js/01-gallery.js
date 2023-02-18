@@ -28,9 +28,9 @@ gallery.addEventListener("click", (e) => {
     const imgSelected = e.target.getAttribute("data-source");
 
     const instance = basicLightbox.create(
-    `<img src='${imgSelected}' width='800' height='600'>`,
-    {
-      // налаштування бібліотеки
+      `<img src='${imgSelected}' width='800' height='600'>`,
+      {
+      // бібліотекa
       onShow: () => {
         document.addEventListener('keydown', closeModal);
       },
@@ -39,12 +39,12 @@ gallery.addEventListener("click", (e) => {
       },
     }
   );
-    instance.show();
-
-})
-
-function closeModal(e) {
-    if (e.key === "Escape") {
-        instance.close();
+  instance.show();
+  
+  
+  function closeModal(e) {
+    if (e.key === 'Escape') {
+        instance.close()
     }
 }
+})
